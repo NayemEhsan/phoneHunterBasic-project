@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1 class="text-5xl text-bold text-slate-50 text-center">Phone Hunter</h1>
+        <h1 class="text-5xl text-bold  text-center bg-orange-300 m-10 p-10 text-black rounded font-bold">Phone Galary</h1>
     </header>
     <main class="container mx-auto mt-8 ">
         <section class="bg-white p-4 mt-4 mb-4 flex flex-row gap-5 content-between rounded-sm">
@@ -59,6 +59,26 @@
             <div class="hidden text-center my-10" id="showall-container">
               <button onclick="showall()" class="btn btn-warning">Show all</button>
             </div>
+        </section>
+
+        <!-- single phone details -->
+        <section>
+<dialog id="phone_details" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+ 
+    <div id="showData-container" class="m-2 p-2 bg-white text-black rounded">
+         
+        
+
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
         </section>
     </main>
     <footer>

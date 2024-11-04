@@ -1,6 +1,6 @@
 
 
-const loadPhone = async (searchText,isShowAll) =>{
+const loadPhone = async (searchText='iphone',isShowAll) =>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
@@ -21,16 +21,13 @@ const displayPhones = (phones,isShowAll) =>{
   }else{
     showAllContainer.classList.add('hidden')
   }
-  console.log('is show all', isShowAll);
+  // console.log('is show all', isShowAll);
 
   if(!isShowAll){
          // display only 12 phones
   phones = phones.slice(0,12);
 
   }
-
-
-
 
  phones.forEach(phone => {
     // console.log(phone);
@@ -48,7 +45,7 @@ const displayPhones = (phones,isShowAll) =>{
         <h3>${phone.phone_name}</h3>
         <p>${phone.slug}</p>
         <div class="card-actions">
-        <button class="btn btn-primary">Show Details</button>
+        <button onclick="showDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
         </div>
     </div>
 
@@ -57,6 +54,37 @@ const displayPhones = (phones,isShowAll) =>{
  });
 //  terminate loading spinner
  loadSpinner(false);
+}
+
+const showDetails = async (id)=>{
+ const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+ const data = await res.json();
+//  console.log(data);
+ const phone = data.data;
+displayShowData(phone);
+
+}
+
+const displayShowData = (phone) =>{
+ const showDataContainer = document.getElementById('showData-container');
+ showDataContainer.innerHTML=  `
+<div class="content-center">
+<img class="rounded my-4 mx-2 " src="${phone.image}" alt="">
+</div>
+<h1 class="text-4xl ml-2 my-2">${phone.name}</h1>
+
+
+<p><span class="font-bold text-xl">Storage:</span> ${phone.mainFeatures.storage}</p>
+<p><span class="font-bold text-xl">Display Size:</span> ${phone.mainFeatures.displaySize}</p>
+<p><span class="font-bold text-xl">Chipset:</span> ${phone.mainFeatures.chipSet}</p>
+<p><span class="font-bold text-xl">Memory:</span> ${phone.mainFeatures.memory}</p>
+<p><span class="font-bold text-xl">Slug:</span> ${phone.slug}</p>
+<p><span class="font-bold text-xl">Release Data:</span> ${phone.releaseDate}</p>
+<p><span class="font-bold text-xl">Brand:</span> ${phone.brand}</p>
+`;
+
+phone_details.showModal();
+
 }
 
 // search function
@@ -87,3 +115,4 @@ const showall =()=>{
 
 }
 
+loadPhone();
