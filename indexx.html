@@ -32,6 +32,11 @@
 
         <!-- search result -->
         <section>
+           <!-- loading spinner -->
+            <div id="loading-spinner" class="text-center my-9 hidden">
+              <span class="loading loading-dots loading-lg"></span>
+            </div>
+
             <div id="phone-container" class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-2">
 
                 <!-- <div class="card bg-base-100 w-96 shadow-xl">
@@ -49,6 +54,10 @@
                       </div>
                     </div>
                   </div> -->
+            </div>
+            <!-- show all button -->
+            <div class="hidden text-center my-10" id="showall-container">
+              <button onclick="showall()" class="btn btn-warning">Show all</button>
             </div>
         </section>
     </main>
